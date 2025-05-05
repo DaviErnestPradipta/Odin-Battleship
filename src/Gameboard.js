@@ -1,6 +1,5 @@
+import {BOARD_SIZE} from "./Constants.js";
 import Ship from "./Ship.js";
-
-const BOARD_SIZE = 10;
 
 export default class Gameboard {
     constructor() {

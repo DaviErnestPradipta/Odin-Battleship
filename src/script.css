@@ -82,7 +82,8 @@ main {
     align-items: center;
 }
   
-.board div:hover {
+.board div:hover,
+.placed {
     background-color: var(--first-color);
     color: white;
-}  
+}

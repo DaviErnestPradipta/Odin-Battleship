@@ -23,6 +23,17 @@ export function createShip(length, x, y, isVertical = false, boardSelector) {
 
         if (cell) cell.textContent = shipLetter;
     }
+
+    const side = boardSelector.includes('computer') ? 'computer' : 'human';
+    const tracker = document.querySelector(`.${side}.tracker`);
+    const shipElements = Array.from(tracker.querySelectorAll(`.${side}.ship`));
+    
+    const target = shipElements.find(ship => 
+        ship.textContent === shipLetter && 
+        !ship.classList.contains('placed')
+    );
+
+    if (target) target.classList.add('placed');
 }
 
 

@@ -1,6 +1,6 @@
-import Ship from "./Ship.js";
-import Gameboard from "./Gameboard.js";
-import Player from "./Player.js";
+import Ship from "./helper/Ship.js";
+import Gameboard from "./helper/Gameboard.js";
+import Player from "./helper/Player.js";
 
 test('Sink destroyer after three hits', () => {
     const destroyer = new Ship(3);

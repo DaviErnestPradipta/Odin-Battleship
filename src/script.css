@@ -77,8 +77,12 @@ main {
     height: calc(var(--scale-size) * 5 / 2);
     background-color: white;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
   
 .board div:hover {
     background-color: var(--first-color);
+    color: white;
 }  

@@ -1,4 +1,5 @@
 import {BOARD_SIZE} from "./Constants.js";
+import {createShip} from "./DOM.js";
 import Ship from "./Ship.js";
 
 export default class Gameboard {
@@ -24,6 +25,7 @@ export default class Gameboard {
 
         positions.forEach(([row, col]) => this.board[row][col] = ship);
         this.ships.push({ship, positions, hits: []});
+        createShip(length, x, y, isVertical);
     }
 
     receiveAttack(x, y) {

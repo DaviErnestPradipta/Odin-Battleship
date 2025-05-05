@@ -22,14 +22,18 @@ export function createShip(length, x, y, isVertical = false, boardSelector) {
     const shipLetter = letterMap[length];
     if (!shipLetter) return;
 
-    for (let i = 0; i < length; i++) {
-        const row = isVertical ? y + i : y;
-        const col = isVertical ? x : x + i;
+    const reveal = boardSelector.includes('human');
 
-        const cellIndex = row * BOARD_SIZE + col;
-        const cell = board.children[cellIndex];
-
-        if (cell) cell.textContent = shipLetter;
+    if (reveal) {
+        for (let i = 0; i < length; i++) {
+            const row = isVertical ? y + i : y;
+            const col = isVertical ? x : x + i;
+    
+            const cellIndex = row * BOARD_SIZE + col;
+            const cell = board.children[cellIndex];
+    
+            if (cell) cell.textContent = shipLetter;
+        }
     }
 
     updateTracker(shipLetter, boardSelector);

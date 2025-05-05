@@ -6,5 +6,5 @@ function createBoard(containerSelector) {
     }
 }
 
-createBoard('.player.board');
+createBoard('.human.board');
 createBoard('.computer.board');

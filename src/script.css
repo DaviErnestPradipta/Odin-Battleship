@@ -45,6 +45,23 @@ main {
     margin-bottom: var(--scale-size);
     font-size: calc(var(--scale-size) * 2);
 }
+
+.tracker {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: var(--scale-size);
+}
+
+.ship {
+    height: calc(var(--scale-size) * 5 / 2);
+    width: calc(var(--scale-size) * 5 / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: calc(var(--scale-size) / 2);;
+}
   
 .board {
     display: grid;

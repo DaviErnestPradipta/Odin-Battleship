@@ -1,5 +1,13 @@
 import {BOARD_SIZE} from "./Constants.js";
 
+export function createBoard(containerSelector) {
+    const board = document.querySelector(containerSelector);
+    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+        const cell = document.createElement('div');
+        board.appendChild(cell);
+    }
+};
+
 export function createShip(length, x, y, isVertical = false, boardSelector) {
     const board = document.querySelector(boardSelector);
 
@@ -39,12 +47,3 @@ function updateTracker(letter, boardSelector) {
 
     if (target) target.classList.add('placed');
 }
-
-
-export function createBoard(containerSelector) {
-    const board = document.querySelector(containerSelector);
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-        const cell = document.createElement('div');
-        board.appendChild(cell);
-    }
-};

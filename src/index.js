@@ -1,10 +1,5 @@
-function createBoard(containerSelector) {
-    const board = document.querySelector(containerSelector);
-    for (let i = 0; i < 100; i++) {
-        const cell = document.createElement('div');
-        board.appendChild(cell);
-    }
-}
+import "./script.css";
+import {createBoard} from "./DOM.js";
 
 createBoard('.human.board');
 createBoard('.computer.board');

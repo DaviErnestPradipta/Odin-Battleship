@@ -1,0 +1,72 @@
+:root {
+    --scale-size: 1rem;
+    --first-color: rgb(100, 150, 100);
+    --grid-size: repeat(10, 1fr);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: var(--scale-size);
+}
+
+html, body {
+    height: 100%;
+}
+  
+body {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+header, footer {
+    background-color: var(--first-color);
+    color: white;
+    padding: var(--scale-size);
+    width: 100%;
+    text-align: center;
+    font-size: calc(var(--scale-size) * 2);
+}
+  
+main {
+    flex: 1;
+    display: flex;
+    gap: calc(var(--scale-size) * 3);
+    justify-content: center;
+    align-items: center;
+    margin: calc(var(--scale-size) * 2) 0;
+}
+  
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.label {
+    font-weight: bold;
+    margin-bottom: var(--scale-size);
+}
+  
+.board {
+    display: grid;
+    grid-template-columns: var(--grid-size);
+    grid-template-rows: var(--grid-size);
+    gap: 1px;
+    background-color: black;
+    border: 1px solid black;
+}
+  
+.board div {
+    width: calc(var(--scale-size) * 5 / 2);
+    height: calc(var(--scale-size) * 5 / 2);
+    background-color: white;
+    cursor: pointer;
+}
+  
+.board div:hover {
+    background-color: var(--first-color);
+}  

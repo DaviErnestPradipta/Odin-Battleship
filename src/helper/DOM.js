@@ -1,7 +1,7 @@
 import {BOARD_SIZE} from "./Constants.js";
 
-export function createShip(length, x, y, isVertical = false) {
-    const board = document.querySelector('.board');
+export function createShip(length, x, y, isVertical = false, boardSelector) {
+    const board = document.querySelector(boardSelector);
 
     const letterMap = {
         5: 'A',

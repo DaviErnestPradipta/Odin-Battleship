@@ -3,10 +3,11 @@ import {createShip} from "./DOM.js";
 import Ship from "./Ship.js";
 
 export default class Gameboard {
-    constructor() {
+    constructor(boardSelector = '.human.board') {
         this.board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
         this.ships = [];
         this.missedAttacks = [];
+        this.boardSelector = boardSelector;
     }
 
     placeShip(length, x, y, isVertical = false) {
@@ -25,7 +26,8 @@ export default class Gameboard {
 
         positions.forEach(([row, col]) => this.board[row][col] = ship);
         this.ships.push({ship, positions, hits: []});
-        createShip(length, x, y, isVertical);
+
+        createShip(length, x, y, isVertical, this.boardSelector);
     }
 
     receiveAttack(x, y) {

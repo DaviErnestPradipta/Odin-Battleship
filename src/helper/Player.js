@@ -4,7 +4,7 @@ import Gameboard from "./Gameboard.js";
 export default class Player {
     constructor (isComputer = false) {
         this.isComputer = isComputer;
-        this.gameboard = new Gameboard();
+        this.gameboard = new Gameboard(isComputer? '.computer.board' : '.human.board');
         this.attacksMade = new Set();
     }
 

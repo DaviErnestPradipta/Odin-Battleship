@@ -1,4 +1,4 @@
-import {Ship} from "./index.js";
+import Ship from "./ship.js";
 
 test('Sink destroyer after three hits', () => {
     const destroyer = new Ship(3);

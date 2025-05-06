@@ -14,3 +14,5 @@ export const states = [
     'sunk',
     'miss'
 ];
+
+export const shipLengths = [5, 4, 3, 2, 1, 1];

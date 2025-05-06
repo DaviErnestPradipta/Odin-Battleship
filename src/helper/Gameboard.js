@@ -35,6 +35,21 @@ export default class Gameboard {
         createShip(length, x, y, isVertical, this.boardSelector);
     }
 
+    placeShipRandomly(length) {
+        let placed = false;
+    
+        while (!placed) {
+            const x = Math.floor(Math.random() * BOARD_SIZE);
+            const y = Math.floor(Math.random() * BOARD_SIZE);
+            const isVertical = Math.random() < 0.5;
+    
+            try {
+                this.placeShip(length, x, y, isVertical);
+                placed = true;
+            } catch (error) {}
+        }
+    }    
+
     receiveAttack(x, y) {
         const cell = this.board[y][x];
 

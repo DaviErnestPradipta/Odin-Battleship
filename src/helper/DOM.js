@@ -1,4 +1,4 @@
-import {BOARD_SIZE, letterMap} from "./Constants.js";
+import {BOARD_SIZE, letterMap, states} from "./Constants.js";
 
 export function createBoard(containerSelector) {
     const board = document.querySelector(containerSelector);
@@ -24,15 +24,15 @@ export function updateTracker(length, boardSelector, state) {
         ship.textContent === letter && 
         !ship.classList.contains(state)
     );
-
-    if ((side && state !== 'hit') || !side) target.classList.add(state);
+    
+    if ((side && state !== 'hit') || !side) stripClass(target).classList.add(state);
 }
 
 export function updateCell(x, y, boardSelector, state) {
     const board = document.querySelector(boardSelector);
     const cellIndex = y * BOARD_SIZE + x;
     const cell = board.children[cellIndex];
-    cell.classList.add(state);
+    stripClass(cell).classList.add(state);
 }
 
 function revealShip(length, x, y, isVertical = false, boardSelector) {
@@ -47,4 +47,12 @@ function revealShip(length, x, y, isVertical = false, boardSelector) {
 
         if (cell) cell.textContent = letterMap[length];
     }
+}
+
+function stripClass (element) {
+    states.forEach(state => {
+        if (element.classList.contains(state)) element.classList.remove(state)
+    });
+
+    return element;
 }

@@ -83,6 +83,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: default;
 }
 
 .tracker > .placed {
@@ -96,16 +97,12 @@ main {
     color: black;   
 }
 
-.tracker > .sunk {
+.tracker > .sunk,
+.board > div.sunk {
     background-color: var(--third-color);
     color: white;
 }
 
-.board > div.hit {
-    cursor: default;
-}
-
 .board > div.miss {
     background-color: black;
-    cursor: default;
 }

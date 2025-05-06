@@ -40,7 +40,11 @@ export default class Gameboard {
 
             updateTracker(cell.length, this.boardSelector, 'hit');
             updateCell(x, y, this.boardSelector, 'hit');
-            if (cell.isSunk()) updateTracker(cell.length, this.boardSelector, 'sunk');
+            if (cell.isSunk()) {
+                updateTracker(cell.length, this.boardSelector, 'sunk');
+                for (const [row, col] of shipData.positions)
+                    updateCell(col, row, this.boardSelector, 'sunk');
+            }
         }
 
         else {

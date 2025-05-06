@@ -1,4 +1,5 @@
 export const BOARD_SIZE = 10;
+
 export const letterMap = {
     5: 'A',
     4: 'B',
@@ -6,3 +7,10 @@ export const letterMap = {
     2: 'D',
     1: 'S'
 };
+
+export const states = [
+    'placed',
+    'hit',
+    'sunk',
+    'miss'
+];

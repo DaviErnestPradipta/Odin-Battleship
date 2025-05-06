@@ -3,6 +3,13 @@ import {BOARD_SIZE, letterMap, states} from "./Constants.js";
 toggleButton('turn-button', '1', '2');
 toggleButton('arrow-button', '▶', '▼');
 
+document.querySelectorAll('.human.ship').forEach(shipElement => {
+    shipElement.addEventListener('click', (e) => {
+        selectedShip = parseInt(e.target.textContent); // Set the selected ship length
+        console.log(`Selected ship: ${selectedShip}`);   // You can remove this later
+    });
+});
+
 export function createBoard(containerSelector) {
     const board = document.querySelector(containerSelector);
     

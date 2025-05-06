@@ -53,6 +53,7 @@ main {
     justify-content: center;
     align-content: center;
     margin-bottom: var(--scale-size);
+    cursor: default;
 }
 
 .ship {
@@ -100,6 +101,11 @@ main {
     color: white;
 }
 
+.board > div.hit {
+    cursor: default;
+}
+
 .board > div.miss {
     background-color: black;
+    cursor: default;
 }

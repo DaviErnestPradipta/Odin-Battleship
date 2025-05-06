@@ -12,3 +12,5 @@ const computer = new Player(true);
 shipLengths.forEach(length => {
     computer.gameboard.placeShipRandomly(length);
 });
+
+// Add here

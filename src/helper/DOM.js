@@ -25,7 +25,7 @@ export function updateTracker(length, boardSelector, state) {
         !ship.classList.contains(state)
     );
 
-    if (target) target.classList.add(state);
+    if ((side && state !== 'hit') || !side) target.classList.add(state);
 }
 
 export function updateCell(x, y, boardSelector, state) {

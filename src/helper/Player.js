@@ -19,12 +19,12 @@ export default class Player {
             x = Math.floor(Math.random() * BOARD_SIZE);
             y = Math.floor(Math.random() * BOARD_SIZE);
             key = `${x},${y}`;
-        } 
-        
-        while (this.attacksMade.has(key));
+        } while (this.attacksMade.has(key));
 
-        this.attacksMade.add(key);
-        this.attack(opponentBoard, x, y);
-        return [x, y];
+        try {
+            this.attack(opponentBoard, x, y);
+            this.attacksMade.add(key);
+            return [x, y];
+        } catch (error) {return this.randomAttack(opponentBoard);}
     }
 }

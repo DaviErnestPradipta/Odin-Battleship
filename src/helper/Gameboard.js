@@ -38,11 +38,11 @@ export default class Gameboard {
             const shipData = this.ships.find(s => s.ship === cell);
             shipData.hits.push([y, x]);
 
-            updateTracker(cell.constructor.name[0], this.boardSelector, 'hit');
+            updateTracker(cell.length, this.boardSelector, 'hit');
             updateCell(x, y, this.boardSelector, 'hit');
 
             if (cell.isSunk()) {
-                updateTracker(cell.constructor.name[0], this.boardSelector, 'sunk');
+                updateTracker(cell.length, this.boardSelector, 'sunk');
             }
         }
 

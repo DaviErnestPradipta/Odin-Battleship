@@ -11,13 +11,14 @@ export function createBoard(containerSelector) {
 export function createShip(length, x, y, isVertical = false, boardSelector) {
     const reveal = boardSelector.includes('human');
     if (reveal) revealShip(length, x, y, isVertical, boardSelector);
-    updateTracker(letterMap[length], boardSelector, 'placed');
+    updateTracker(length, boardSelector, 'placed');
 }
 
-export function updateTracker(letter, boardSelector, state) {
+export function updateTracker(length, boardSelector, state) {
     const side = boardSelector.includes('computer') ? 'computer' : 'human';
     const tracker = document.querySelector(`.${side}.tracker`);
     const shipElements = Array.from(tracker.querySelectorAll(`.${side}.ship`));
+    const letter = letterMap[length];
 
     const target = shipElements.find(ship => 
         ship.textContent === letter && 

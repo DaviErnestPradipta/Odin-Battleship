@@ -1,10 +1,7 @@
 import {BOARD_SIZE, letterMap, states} from "./Constants.js";
 
-const button = document.getElementById('button');
-
-button.addEventListener("click", () => {
-    button.textContent = button.textContent === "▶" ? "▼" : "▶";
-});
+toggleButton('turn-button', '1', '2');
+toggleButton('arrow-button', '▶', '▼');
 
 export function createBoard(containerSelector) {
     const board = document.querySelector(containerSelector);
@@ -50,6 +47,13 @@ export function revealSunkComputerShip(length, positions, boardSelector) {
     const [startRow, startCol] = positions[0];
     const isVertical = positions.length > 1 && positions[1][0] !== startRow;
     revealShip(length, startCol, startRow, isVertical, boardSelector);
+}
+
+function toggleButton(buttonID, value1, value2) {
+    const button = document.getElementById(buttonID);
+    button.addEventListener("click", () => {
+        button.textContent = button.textContent === value1 ? value2 : value1;
+    });
 }
 
 function revealShip(length, x, y, isVertical = false, boardSelector) {

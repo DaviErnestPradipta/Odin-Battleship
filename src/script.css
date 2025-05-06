@@ -82,7 +82,12 @@ main {
     align-items: center;
 }
 
-.placed {
+.tracker > .placed {
     background-color: var(--first-color);
     color: white;
+}
+
+.tracker > .hit {
+    background-color: yellow;
+    color: black;   
 }

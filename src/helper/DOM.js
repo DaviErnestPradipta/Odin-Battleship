@@ -19,7 +19,27 @@ export function createBoard(containerSelector) {
 export function createShip(length, x, y, isVertical = false, boardSelector) {
     const reveal = boardSelector.includes('human');
     if (reveal) revealShip(length, x, y, isVertical, boardSelector);
-    updateTracker(letterMap[length], boardSelector);
+    updateTracker(letterMap[length], boardSelector, 'placed');
+}
+
+export function updateTracker(letter, boardSelector, state) {
+    const side = boardSelector.includes('computer') ? 'computer' : 'human';
+    const tracker = document.querySelector(`.${side}.tracker`);
+    const shipElements = Array.from(tracker.querySelectorAll(`.${side}.ship`));
+
+    const target = shipElements.find(ship => 
+        ship.textContent === letter && 
+        !ship.classList.contains(state)
+    );
+
+    if (target) target.classList.add(state);
+}
+
+export function updateCell(x, y, boardSelector, state) {
+    const board = document.querySelector(boardSelector);
+    const cellIndex = y * BOARD_SIZE + x;
+    const cell = board.children[cellIndex];
+    cell.classList.add(state);
 }
 
 function revealShip(length, x, y, isVertical = false, boardSelector) {
@@ -34,17 +54,4 @@ function revealShip(length, x, y, isVertical = false, boardSelector) {
 
         if (cell) cell.textContent = letterMap[length];
     }
-}
-
-function updateTracker(letter, boardSelector) {
-    const side = boardSelector.includes('computer') ? 'computer' : 'human';
-    const tracker = document.querySelector(`.${side}.tracker`);
-    const shipElements = Array.from(tracker.querySelectorAll(`.${side}.ship`));
-
-    const target = shipElements.find(ship => 
-        ship.textContent === letter && 
-        !ship.classList.contains('placed')
-    );
-
-    if (target) target.classList.add('placed');
 }

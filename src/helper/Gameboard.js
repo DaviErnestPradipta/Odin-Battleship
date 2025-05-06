@@ -1,5 +1,5 @@
 import {BOARD_SIZE} from "./Constants.js";
-import {createShip} from "./DOM.js";
+import {createShip, updateCell, updateTracker} from "./DOM.js";
 import Ship from "./Ship.js";
 
 export default class Gameboard {
@@ -37,9 +37,19 @@ export default class Gameboard {
             cell.hit();
             const shipData = this.ships.find(s => s.ship === cell);
             shipData.hits.push([y, x]);
+
+            updateTracker(cell.constructor.name[0], this.boardSelector, 'hit');
+            updateCell(x, y, this.boardSelector, 'hit');
+
+            if (cell.isSunk()) {
+                updateTracker(cell.constructor.name[0], this.boardSelector, 'sunk');
+            }
         }
 
-        else this.missedAttacks.push([y, x]);
+        else {
+            this.missedAttacks.push([y, x]);
+            updateCell(x, y, this.boardSelector, 'miss');
+        }
     }
 
     allShipsSunk() {

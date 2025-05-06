@@ -23,3 +23,4 @@ computer.gameboard.placeShip(1, 8, 6);
 computer.gameboard.placeShip(1, 4, 6);
 
 computer.attack(human.gameboard, 1, 1);
+computer.attack(human.gameboard, 0, 0);

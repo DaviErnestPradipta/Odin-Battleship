@@ -1,6 +1,8 @@
 :root {
     --scale-size: 1rem;
     --first-color: rgb(100, 150, 100);
+    --second-color: rgb(250, 250, 50);
+    --third-color: rgb(250, 100, 100);
     --grid-size: repeat(10, 1fr);
 }
 
@@ -87,7 +89,17 @@ main {
     color: white;
 }
 
-.tracker > .hit {
-    background-color: yellow;
+.tracker > .hit,
+.board > div.hit {
+    background-color: var(--second-color);
     color: black;   
+}
+
+.tracker > .sunk {
+    background-color: var(--third-color);
+    color: white;
+}
+
+.board > div.miss {
+    background-color: black;
 }

@@ -22,5 +22,16 @@ computer.gameboard.placeShip(2, 8, 1, true);
 computer.gameboard.placeShip(1, 8, 6);
 computer.gameboard.placeShip(1, 4, 6);
 
+computer.attack(human.gameboard, 0, 1);
 computer.attack(human.gameboard, 1, 1);
-computer.attack(human.gameboard, 0, 0);
+computer.attack(human.gameboard, 2, 1);
+computer.attack(human.gameboard, 3, 1);
+computer.attack(human.gameboard, 4, 1);
+computer.attack(human.gameboard, 5, 1);
+
+human.attack(computer.gameboard, 0, 1);
+human.attack(computer.gameboard, 1, 1);
+human.attack(computer.gameboard, 2, 1);
+human.attack(computer.gameboard, 3, 1);
+human.attack(computer.gameboard, 4, 1);
+human.attack(computer.gameboard, 5, 1);

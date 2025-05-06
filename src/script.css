@@ -117,3 +117,17 @@ button:disabled {
 .board > div.miss {
     background-color: black;
 }
+
+/* Add here */
+
+.bold {
+    font-weight: bold;
+}
+
+.blink {
+    animation: blink-text 1s step-start infinite;
+}
+
+@keyframes blink-text {
+    50% { color: transparent; }  /* Make the text invisible at 50% */
+}

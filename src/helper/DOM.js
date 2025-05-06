@@ -64,7 +64,10 @@ function revealShip(length, x, y, isVertical = false, boardSelector) {
         const col = isVertical ? x : x + i;
         const cellIndex = row * BOARD_SIZE + col;
         const cell = board.children[cellIndex];
-        if (cell) cell.textContent = letterMap[length];
+        if (cell) {
+            cell.textContent = letterMap[length];
+            cell.classList.add('placed');
+        }
     }
 }
 

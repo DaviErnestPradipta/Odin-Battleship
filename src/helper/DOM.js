@@ -1,5 +1,11 @@
 import {BOARD_SIZE, letterMap, states} from "./Constants.js";
 
+const button = document.getElementById('button');
+
+button.addEventListener("click", () => {
+    button.textContent = button.textContent === "▶" ? "▼" : "▶";
+});
+
 export function createBoard(containerSelector) {
     const board = document.querySelector(containerSelector);
     

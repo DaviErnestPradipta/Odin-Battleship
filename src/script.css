@@ -56,7 +56,24 @@ main {
     cursor: default;
 }
 
-.ship {
+.tracker > .placed {
+    background-color: var(--first-color);
+    color: white;
+}
+
+.tracker > .hit,
+.board > div.hit {
+    background-color: var(--second-color);
+    color: black;   
+}
+
+.tracker > .sunk,
+.board > div.sunk {
+    background-color: var(--third-color);
+    color: white;
+}
+
+.ship, button {
     height: calc(var(--scale-size) * 5 / 2);
     width: calc(var(--scale-size) * 5 / 2);
     display: flex;
@@ -64,6 +81,11 @@ main {
     align-items: center;
     border: 1px solid black;
     margin: calc(var(--scale-size) / 2);;
+}
+
+button {
+    background-color: white;
+    cursor: pointer;
 }
   
 .board {
@@ -84,23 +106,6 @@ main {
     justify-content: center;
     align-items: center;
     cursor: default;
-}
-
-.tracker > .placed {
-    background-color: var(--first-color);
-    color: white;
-}
-
-.tracker > .hit,
-.board > div.hit {
-    background-color: var(--second-color);
-    color: black;   
-}
-
-.tracker > .sunk,
-.board > div.sunk {
-    background-color: var(--third-color);
-    color: white;
 }
 
 .board > div.miss {

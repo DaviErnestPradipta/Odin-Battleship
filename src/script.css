@@ -87,6 +87,12 @@ button {
     background-color: white;
     cursor: pointer;
 }
+
+button:disabled {
+    background-color: black;
+    color: white;
+    cursor: default;
+}
   
 .board {
     display: grid;

@@ -1,6 +1,12 @@
 import {BOARD_SIZE} from "./Constants.js";
-import {createShip, updateCell, updateTracker} from "./DOM.js";
 import Ship from "./Ship.js";
+
+import {
+    createShip, 
+    revealSunkComputerShip, 
+    updateCell, 
+    updateTracker
+} from "./DOM.js";
 
 export default class Gameboard {
     constructor(boardSelector = '.human.board') {
@@ -26,7 +32,6 @@ export default class Gameboard {
 
         positions.forEach(([row, col]) => this.board[row][col] = ship);
         this.ships.push({ship, positions, hits: []});
-
         createShip(length, x, y, isVertical, this.boardSelector);
     }
 
@@ -40,10 +45,19 @@ export default class Gameboard {
 
             updateTracker(cell.length, this.boardSelector, 'hit');
             updateCell(x, y, this.boardSelector, 'hit');
+
             if (cell.isSunk()) {
                 updateTracker(cell.length, this.boardSelector, 'sunk');
-                for (const [row, col] of shipData.positions)
+                
+                for (const [row, col] of shipData.positions) {
                     updateCell(col, row, this.boardSelector, 'sunk');
+                    
+                    revealSunkComputerShip(
+                        cell.length, 
+                        shipData.positions, 
+                        this.boardSelector
+                    );
+                }
             }
         }
 

@@ -21,27 +21,22 @@ let selectedShip = null;
 let selectedShipLength = null;
 let isVertical = false;
 
-const humanShips = document.querySelectorAll('.human.tracker .human.ship');
+const ships = document.querySelectorAll('.human.ship');
 
-// 🆕 Handle rotation toggle
 document.getElementById('arrow-button').addEventListener('click', () => {
     isVertical = !isVertical;
 });
 
-// 🆕 Handle ship tracker selection
-humanShips.forEach(ship => {
+ships.forEach(ship => {
     ship.addEventListener('click', () => {
         if (ship.classList.contains('placed')) return;
-    
-        humanShips.forEach(el => el.classList.remove('bold'));
+        ships.forEach(ship => ship.classList.remove('bold'));
         ship.classList.add('bold');
-    
         selectedShip = ship;
-        selectedShipLength = parseInt(ship.dataset.length); // Use dataset!
+        selectedShipLength = parseInt(ship.dataset.length);
     });    
 });
 
-// 🆕 Hover + click interaction for placing ships
 const board = document.querySelector('.human.board');
 const cells = Array.from(board.children);
 
@@ -51,50 +46,52 @@ cells.forEach((cell, index) => {
 
     cell.addEventListener('mouseover', () => {
         if (!selectedShipLength) return;
-        const cellsToBlink = getCellsToPreview(x, y, selectedShipLength, isVertical);
+        const cellsToBlink = getCells(x, y, selectedShipLength, isVertical);
         if (cellsToBlink) {
-            cellsToBlink.forEach(c => {
-                c.classList.add('blink');
-                c.textContent = letterMap[selectedShipLength]; // ✅ Show letter on preview
+            cellsToBlink.forEach(cell => {
+                cell.classList.add('blink');
+                cell.textContent = letterMap[selectedShipLength];
             });
         }
     });
 
     cell.addEventListener('mouseout', () => {
-        cells.forEach(c => {
-            c.classList.remove('blink');
-            if (!c.classList.contains('placed')) c.textContent = ''; // ✅ Don’t erase placed letters
+        cells.forEach(cell => {
+            cell.classList.remove('blink');
+            if (!cell.classList.contains('placed')) cell.textContent = '';
         });
     });
 
     cell.addEventListener('click', () => {
         if (!selectedShipLength) return;
-        const cellsToPlace = getCellsToPreview(x, y, selectedShipLength, isVertical);
+        const cellsToPlace = getCells(x, y, selectedShipLength, isVertical);
         if (cellsToPlace) {
             try {
                 human.gameboard.placeShip(selectedShipLength, x, y, isVertical);
-
-                // ✅ Mark only one matching tracker as placed
                 if (selectedShip) selectedShip.classList.add('placed');
 
-                // ✅ Finalize the placed ship cells
-                cellsToPlace.forEach(c => {
-                    c.classList.remove('blink');
-                    c.classList.add('placed');
-                    c.textContent = letterMap[selectedShipLength];
+                cellsToPlace.forEach(cell => {
+                    cell.classList.remove('blink');
+                    cell.classList.add('placed');
+                    cell.textContent = letterMap[selectedShipLength];
                 });
 
-                humanShips.forEach(el => el.classList.remove('bold'));
+                ships.forEach(ship => ship.classList.remove('bold'));
                 selectedShipLength = null;
                 selectedShip = null;
             } catch (err) {
                 console.warn("Invalid ship placement");
             }
         }
+        const allPlaced = Array.from(ships).every(ship => ship.classList.contains('placed'));
+        if (allPlaced) {
+            document.getElementById('turn-button').disabled = true;
+            document.getElementById('arrow-button').disabled = true;
+        }
     });
 });
 
-function getCellsToPreview(x, y, length, vertical) {
+function getCells(x, y, length, vertical) {
     const board = document.querySelector('.human.board');
     const cells = [];
 

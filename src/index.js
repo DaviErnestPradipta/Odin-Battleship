@@ -17,6 +17,7 @@ shipLengths.forEach(length => {
 
 import {letterMap} from "./helper/Constants.js";
 
+let selectedShip = null;
 let selectedShipLength = null;
 let isVertical = false;
 
@@ -31,14 +32,13 @@ document.getElementById('arrow-button').addEventListener('click', () => {
 humanShips.forEach(ship => {
     ship.addEventListener('click', () => {
         if (ship.classList.contains('placed')) return;
-
+    
         humanShips.forEach(el => el.classList.remove('bold'));
         ship.classList.add('bold');
-
-        selectedShipLength = parseInt(
-            Object.entries(letterMap).find(([length, letter]) => letter === ship.textContent)[0]
-        );
-    });
+    
+        selectedShip = ship;
+        selectedShipLength = parseInt(ship.dataset.length); // Use dataset!
+    });    
 });
 
 // 🆕 Hover + click interaction for placing ships
@@ -75,14 +75,11 @@ cells.forEach((cell, index) => {
                 human.gameboard.placeShip(selectedShipLength, x, y, isVertical);
 
                 // ✅ Mark only one matching tracker as placed
-                const placedEl = Array.from(humanShips).find(el =>
-                    el.textContent === letterMap[selectedShipLength] &&
-                    !el.classList.contains('placed')
-                );
-                if (placedEl) placedEl.classList.add('placed');
+                if (selectedShip) selectedShip.classList.add('placed');
 
                 humanShips.forEach(el => el.classList.remove('bold'));
                 selectedShipLength = null;
+                selectedShip = null;
             } catch (err) {
                 console.warn("Invalid ship placement");
             }

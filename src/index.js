@@ -4,11 +4,11 @@ import Player from "./helper/Player.js";
 import {shipLengths} from "./helper/Constants.js";
 import initialize from "./helper/Initialize.js"
 
-createBoard('.human.board');
 createBoard('.computer.board');
+createBoard('.human.board');
 
-const human = new Player();
 const computer = new Player(true);
+const human = new Player();
 
 shipLengths.forEach(length => {
     computer.gameboard.placeShipRandomly(length);

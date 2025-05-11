@@ -49,6 +49,25 @@ export function revealSunkComputerShip(length, positions, boardSelector) {
     revealShip(length, startCol, startRow, isVertical, boardSelector);
 }
 
+export function getCells(x, y, length, vertical) {
+    const board = document.querySelector('.human.board');
+    const cells = [];
+
+    for (let i = 0; i < length; i++) {
+        const row = vertical ? y + i : y;
+        const col = vertical ? x : x + i;
+        if (row >= BOARD_SIZE || col >= BOARD_SIZE) return null;
+
+        const index = row * BOARD_SIZE + col;
+        const cell = board.children[index];
+        if (!cell || cell.classList.contains('placed')) return null;
+
+        cells.push(cell);
+    }
+
+    return cells;
+}
+
 function toggleButton(buttonID, value1, value2) {
     const button = document.getElementById(buttonID);
     button.addEventListener("click", () => {

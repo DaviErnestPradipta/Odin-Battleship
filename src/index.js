@@ -77,6 +77,13 @@ cells.forEach((cell, index) => {
                 // ✅ Mark only one matching tracker as placed
                 if (selectedShip) selectedShip.classList.add('placed');
 
+                // ✅ Finalize the placed ship cells
+                cellsToPlace.forEach(c => {
+                    c.classList.remove('blink');
+                    c.classList.add('placed');
+                    c.textContent = letterMap[selectedShipLength];
+                });
+
                 humanShips.forEach(el => el.classList.remove('bold'));
                 selectedShipLength = null;
                 selectedShip = null;

@@ -15,3 +15,5 @@ shipLengths.forEach(length => {
 });
 
 initialize(human);
+
+computer.attack(human.gameboard, 0, 0)
